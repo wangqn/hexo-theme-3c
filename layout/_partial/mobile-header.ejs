@@ -1,0 +1,15 @@
+<div class="show-mobile-menu">
+    <a href="#home-nav">
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#iconmenu"></use>
+        </svg>
+    </a>
+</div>
+<a href="<%=theme.blog_path?theme.blog_path.lastIndexOf("/") === theme.blog_path.length-1?theme.blog_path.slice(0, theme.blog_path.length-1):theme.blog_path:'' %>/" class="avatar_target">
+    <img class="avatar" src="<%=theme.blog_path?theme.blog_path.lastIndexOf("/") === theme.blog_path.length-1?theme.blog_path.slice(0, theme.blog_path.length-1):theme.blog_path:'' %><%=theme.avatar %>" />
+</a>
+<div class="author">
+    <a href="<%=theme.blog_path?theme.blog_path.lastIndexOf("/") === theme.blog_path.length-1?theme.blog_path.slice(0, theme.blog_path.length-1):theme.blog_path:'' %>/" class="avatar_target">
+        <span><%=config.title%></span>
+    </a>
+</div>

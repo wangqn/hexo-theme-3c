@@ -1,0 +1,56 @@
+<div>
+    <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+        <% if (post.title){ %>
+            <h1 class="article-title">
+                <%= post.title %>
+            </h1>
+        <% } %>
+        <div class="article-meta">
+            <% if (theme.author.on==true && post.author) {%>
+            <span class="author"><a><%=post.author %></a></span>
+            <%}%>
+            <% if (post.tags && post.tags.length){ %>
+            <span class="tag">
+                <% post.tags.forEach(function(tag, i){ %>
+                <a class="color<%= tag.name.length % 5 + 1 %>">#<%=tag.name%></a>
+                <% }) %>
+            </span>
+            <% } %>
+        </div>
+        <div class="article-entry markdown-body" itemprop="articleBody">
+            <%- post.content %>
+        </div>
+        <% if (theme.post_copyright && theme.post_copyright.enable) { %>
+            <div class="post-copyright">
+                <p>文章原始链接：<a href="<%= post.permalink %>"><%= post.permalink %></a></p>
+                <p>
+                    <img class="warning" src="<%=theme.blog_path?theme.blog_path.lastIndexOf("/") === theme.blog_path.length-1?theme.blog_path.slice(0, theme.blog_path.length-1):theme.blog_path:'' %>/img/warning.png" />
+                    本站文章除特别声明外，均采用
+                    <a target="_blank" rel="noopener noreferrer" href="<%= theme.post_copyright.license_url %>"><%= theme.post_copyright.license %></a>
+                    许可协议，转载请保留原始链接</p>
+            </div>
+        <% } %>
+    </article>
+</div>
+
+<footer>
+    <p>&copy; <%=theme.since ? theme.since + ' - ' : '' %><%= date(new Date(), 'YYYY') %> <%=config.title%> ｜ 网站使用 <a href="http://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> 生成</p>
+    <p>
+    <% if (theme.icp_beian) { %>
+        <a href="http://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer"><%= theme.icp_beian %></a>
+    <% } %>
+    <% if (theme.gongan_beian) { %>
+        <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=<%= theme.gongan_beian.id %>" target="_blank" rel="noopener noreferrer"><%= theme.gongan_beian.title %></a>
+    <% } %>
+    </p>
+</footer>
+
+<% var c = null %>
+<% if (!index && post.categories) { %>
+    <% post.categories.forEach(function(category){ if (!c) { c = category } }) %>
+    <% if (c) { %>
+        <script>
+            currentCategory = "<%= c.name %>";
+        </script>
+    <% } %>
+<% } %>

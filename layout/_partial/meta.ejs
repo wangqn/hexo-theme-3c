@@ -1,0 +1,19 @@
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<% if (theme.link.rss){ %>
+    <link rel="alternate" href="<%- theme.link.rss %>" title="<%= config.title %>" type="application/atom+xml">
+<% } %>
+<% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+<% } %>
+<link href="<%=theme.blog_path?theme.blog_path.lastIndexOf("/") === theme.blog_path.length-1?theme.blog_path.slice(0, theme.blog_path.length-1):theme.blog_path:'' %>/css/style.less?v=<%=theme.version%>" rel="stylesheet/less">
+<link href="<%=theme.CDN.markdown %>" rel="stylesheet">
+<script src="<%=theme.CDN.less %>"></script>
+<script src="<%=theme.CDN.axios %>"></script>
+<script src="<%=theme.CDN.nprogress_js %>"></script>
+<link href="<%=theme.CDN.highlight_css %>" rel="stylesheet">
+
+<script>
+    var BASE_URL = "<%= theme.blog_path || '/' %>";
+    var currentCategory = '';
+</script>

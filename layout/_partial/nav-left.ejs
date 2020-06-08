@@ -1,0 +1,91 @@
+<a href="<%=theme.blog_path?theme.blog_path.lastIndexOf("/") === theme.blog_path.length-1?theme.blog_path.slice(0, theme.blog_path.length-1):theme.blog_path:'' %>/" class="avatar_target">
+    <img class="avatar" src="<%=theme.blog_path?theme.blog_path.lastIndexOf("/") === theme.blog_path.length-1?theme.blog_path.slice(0, theme.blog_path.length-1):theme.blog_path:'' %><%=theme.avatar %>" />
+</a>
+<div class="author">
+    <span><%=config.title%></span>
+</div>
+
+<% if (theme.link) { %>
+<div class="links">
+    <% if (theme.link.rss) { %>
+        <a href="<%- theme.link.rss %>">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#iconfeed4"></use>
+            </svg>
+        </a>
+    <% } %>
+    <% if (theme.link.github) { %>
+        <a href="<%- theme.link.github %>">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icongithub"></use>
+            </svg>
+        </a>
+    <% } %>
+</div>
+<% } %>
+
+<%
+var displayCategories = site.categories.map(function(category) {
+    return {
+        ...category,
+        postCount: category.posts.length,
+        icon: theme.category.icons[category.name],
+    }
+})
+%>
+<ul>
+    <li>
+        <div class="category-button" data-rel="">
+            <div class="category-icon">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#iconall"></use>
+                </svg>
+            </div>
+            <div class="title">
+                全部文章
+                <% if (theme.category && theme.category.num) { %>
+                    <small><%=site.posts.length%></small>
+                <%}%>
+            </div>
+        </div>
+    </li>
+    <% displayCategories.forEach(function(category){ %>
+        <li data-hide="<%= !category.postCount %>">
+            <div data-rel="<%=category.name%>" class="category-button">
+                <% if (category.icon) { %>
+                    <div class="category-icon">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#<%=category.icon%>"></use>
+                        </svg>
+                    </div>
+                <% } %>
+                <div class="title">
+                    <%=category.name%>
+                    <% if (theme.category && theme.category.num) { %>
+                        <small><%= category.postCount %></small>
+                    <%}%>
+                </div>
+            </div>
+        </li>
+    <% }) %>
+</ul>
+
+<% if (theme.menu && theme.menu.menus) { %>
+    <% var menuPages = '' %>
+    <ul class="custom-menus">
+        <% for (var name in theme.menu.menus) { %>
+            <% var menu = theme.menu.menus[name] %>
+            <% if (menu.type == 'page') { %>
+                <% menuPages += menu.url + ',' %>
+                <li><div data-page="<%= menu.url %>" class="custom-menus-page"><a href="<%= menu.url %>"><%= name %></a></div></li>
+            <% } else if (menu.type == 'link') { %>
+                <li><div><a href="<%= menu.url %>"><%= name %></a></div></li>
+            <% } %>
+        <% } %>
+    </ul>
+    <script>
+        var menuPages = "<%= menuPages %>";
+    </script>
+<% } %>
+
+<div class="space"></div>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<%- partial('_partial/header') %>
+<body>
+    <header class="mobile-header">
+        <%- fragment_cache('mobile-header', function(){
+            return partial('_partial/mobile-header');
+        }) %>
+    </header>
+    <div class="main">
+        <aside class="nav-left">
+            <%- fragment_cache('left', function(){
+                return partial('_partial/nav-left');
+            }) %>
+        </aside>
+        <aside class="nav-middle" data-visible="true">
+            <%- fragment_cache('middle', function(){
+                return partial('_partial/nav-middle');
+            }) %>
+        </aside>
+        <div class="post">
+            <div class="index">
+                <% if (theme.welcome_pics) { %>
+                    <div class="welcome">
+                    </div>
+                    <script>
+                        const WELCOME_PICS = "<%= theme.welcome_pics.join(',') %>";
+                        const welcomePics = WELCOME_PICS.split(',');
+                        const welcomePic = welcomePics[Math.floor(Math.random() * welcomePics.length)];
+                        document.querySelector('.welcome').style['background-image'] = `url('${welcomePic}')`;
+                    </script>
+                <% } %>
+                <% if (site.posts) { %>
+                    <% var firstPost; %>
+                    <% site.posts.sort('date', 'desc').forEach(function(post) { if (!firstPost) { firstPost = post } }) %>
+                    <%- partial('_partial/article', {post: firstPost, index: true}) %>
+                <% } %>
+            </div>
+        </div>
+    </div>
+<%- partial('_partial/footer') %>
+</body>
+</html>

@@ -1,0 +1,51 @@
+avatar: /img/avatar.jpg
+favicon: /img/avatar.jpg
+blog_path: /
+since: 2010
+
+welcome_pics:
+    - /img/1.jpg
+    - /img/2.jpg
+    - /img/3.jpg
+    - /img/4.jpg
+    - /img/5.jpg
+
+link:
+    rss: /atom.xml
+    github: https://github.com
+
+menu:
+    menus:
+        关于:
+            type: page
+            url: /about
+
+category:
+    num: true # 分类显示文章数
+    icons:
+        open-source: iconOpen-SourceIniciati
+        code: iconcode
+        read: iconread
+        blog: iconwebsite
+        geek: icon-Work
+        challenge: iconswift
+
+version: 1.2.1
+
+post_copyright:
+    enable: true
+    license: CC BY-NC-SA 4.0
+    license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+baidu_analytics: 1d8xxxxxxxxxxxxxxx
+icp_beian: 沪ICP备13xxxxxx号
+gongan_beian:
+    title: 沪公网安备31011xxxxxxxxx号
+    id: 31011xxxxxxxxx
+
+CDN:
+    less: /js/less.js
+    markdown: /css/github-markdown.min.css
+    axios: /js/axios.js
+    nprogress_js: /js/nprogress.js
+    highlight_css: /css/github.min.css
